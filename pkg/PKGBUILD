@@ -1,0 +1,58 @@
+# Maintainer: Mike Krüger <mikekrueger81[at]gmail.com>
+
+pkgname=calamares
+pkgver=master
+pkgrel=2
+pkgdesc='Distribution-independent installer framework'
+arch=('i686' 'x86_64')
+license=(GPL)
+url="https://github.com/calamares"
+license=('LGPL')
+depends=('kconfig' 'kcoreaddons' 'ki18n' 'solid' 'yaml-cpp' 'kpmcore' 'mkinitcpio-openswap' 'dmidecode'
+         'boost-libs' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gptfdisk' 'gtk-update-icon-cache' 'rsync' 'squashfs-tools')
+makedepends=('extra-cmake-modules' 'qt5-tools' 'git' 'boost')
+backup=('usr/share/calamares/modules/bootloader.conf'
+        'usr/share/calamares/modules/displaymanager.conf'
+        'usr/share/calamares/modules/initcpio.conf'
+        'usr/share/calamares/modules/unpackfs.conf')
+
+
+source+=("https://github.com/calamares/calamares/archive/master.zip"
+         git+https://github.com/MeerkatBrowser/Namib-Calamares)
+
+sha256sums=('SKIP'
+            'SKIP')
+
+prepare() {
+    cp -a ${srcdir}/calamares-configs/* ${srcdir}/calamares-${pkgver}
+    rm -rf ${srcdir}/calamares-configs
+    cd ${srcdir}/calamares-${pkgver}
+}
+
+
+build() {
+    cd ${srcdir}/calamares-${pkgver}
+
+    mkdir -p build
+    cd build
+        cmake .. \
+              -DCMAKE_BUILD_TYPE=Release \
+              -DCMAKE_INSTALL_PREFIX=/usr \
+              -DCMAKE_INSTALL_LIBDIR=lib \
+              -DSKIP_MODULES="webview interactiveterminal initramfs dracut packages netinstall license"
+        make
+}
+
+package() {
+    cd ${srcdir}/calamares-${pkgver}/build
+    make DESTDIR="$pkgdir" install
+    install -Dm644 "../calamares.desktop" "$pkgdir/usr/share/applications/calamares.desktop"
+    install -Dm644 "../calamares.png" "$pkgdir/usr/share/icons/calamares.png"
+	install -Dm755 "../data/calamares_polkit" "$pkgdir/usr/bin/calamares_polkit"
+    install -Dm644 "../data/49-nopasswd-calamares.rules" "$pkgdir/etc/polkit-1/rules.d/49-nopasswd-calamares.rules"
+    chmod 750 "$pkgdir"/etc/polkit-1/rules.d
+    rm -r "$pkgdir/usr/lib/calamares/modules/dummyprocess/"
+    rm -r "$pkgdir/usr/lib/calamares/modules/dummypython/"
+    rm "$pkgdir/usr/share/calamares/modules/dummypython.conf"
+}
+

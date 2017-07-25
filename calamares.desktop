@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Install Namib GNU/Linux (Calamares)
+GenericName=Live Installer (Calamares)
+Comment=Install the operating system to disk
+Exec=/usr/bin/calamares_polkit %f
+Icon=/usr/share/icons/calamares.png
+Terminal=false
+StartupNotify=true
+Type=Application
+Categories=Qt;System;

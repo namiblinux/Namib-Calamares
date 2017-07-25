@@ -1,0 +1,24 @@
+---
+componentName:  swagarch
+
+strings:
+    productName:         SwagArch GNU/Linux
+    shortProductName:    SwagArch
+    version:             17.07
+    shortVersion:        17.07
+    versionedName:       SwagArch GNU/Linux 17.07
+    shortVersionedName:  SwagArch GNU/Linux 17.07
+    bootloaderEntryName: SwagArch
+    
+
+images:
+    productLogo:         "squid.png"
+    productIcon:         "logo.png"
+    productWelcome:      "languages.png"
+
+slideshow:               "show.qml"
+
+style:
+   sidebarBackground:    "#353945"
+   sidebarText:          "#FFFFFF"
+   sidebarTextSelect:    "#353945"
