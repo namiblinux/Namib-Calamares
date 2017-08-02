@@ -1,5 +1,3 @@
-# Maintainer: Mike Krüger <mikekrueger81[at]gmail.com>
-
 pkgname=calamares
 pkgver=master
 pkgrel=2
