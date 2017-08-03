@@ -77,7 +77,7 @@ class PackageManager:
 def get_language():
     output = libcalamares.globalstorage.value("localeConf")
     lang = output["LANG"]
-    
+
     parts = lang.split(".")
     if len(parts) < 1:
         return ""
@@ -92,16 +92,22 @@ def install_firefox_language_package():
     command = "pacman -Ss"
     pkgname = "firefox-i18n-"
     encoding = "utf-8"
+    update = True
     output = subprocess.check_output(['sh','-c', command, pkgname + lang, "-q"]).decode(encoding)
-    if pkgname + lang not in output: 
+    if pkgname + lang not in output:
         parts = lang.split("-")
         output = subprocess.check_output(['sh','-c', command, pkgname + parts[0], "-q"]).decode(encoding)
         if pkgname + parts[0] in output:
-            print('[mrpacman] -> Install firefox language package :' + pkgname + parts[0])
-            libcalamares.utils.target_env_call(['pacman', '-S', '--noconfirm', pkgname + parts[0]])
+            pkgname = pkgname + parts[0]
+        else:
+            update = False
     else:
-        print('[mrpacman] -> Install firefox language package :' + pkgname + lang)
-        libcalamares.utils.target_env_call(['pacman', '-S', '--noconfirm', pkgname + lang])
+        pkgname = pkgname + lang
+
+    if update:
+        print('[mrpacman] -> Install firefox language package :' + pkgname)
+        libcalamares.utils.target_env_call(['pacman', '-Sy', '--noconfirm', 'firefox']) #updating firefox first!
+        libcalamares.utils.target_env_call(['pacman', '-S', '--noconfirm', pkgname])
 
 
 virtualbox = False #global var for virtualbox_check
@@ -177,8 +183,8 @@ def run():
         run_operations(pkgman, entry)
 
     if connected("http://github.com"):
-        print('[mrpacman] -> updating packages..(this may take several minutes)')
-        pkgman.upgrade()
+        #print('[mrpacman] -> updating packages..(this may take several minutes)')
+        #pkgman.upgrade()
         install_firefox_language_package()
     else:
         print('[mrpacman] -> updating packages skipped (no internet connection found!)')
