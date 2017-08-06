@@ -202,7 +202,7 @@ def run():
     if backend not in ("pacman"):
         return "Bad backend", "backend=\"{}\"".format(backend)
 
-    pkgman = PackageManager(bacinstakend)
+    pkgman = PackageManager(backend)
     operations = libcalamares.job.configuration.get("operations", [])
 
     for entry in operations:
