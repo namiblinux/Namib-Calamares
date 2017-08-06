@@ -106,8 +106,8 @@ def install_firefox_language_package():
 
     if update:
         print('[mrpacman] -> Install firefox language package :' + pkgname)
-		libcalamares.utils.target_env_call(['pacman-key', '--init']) #Initializing the keyring
-		libcalamares.utils.target_env_call(['pacman-key', '--populate', 'archlinux']) #Verifiying the master key
+        libcalamares.utils.target_env_call(['pacman-key', '--init']) #Initializing the keyring
+        libcalamares.utils.target_env_call(['pacman-key', '--populate', 'archlinux']) #Verifiying the master key
         libcalamares.utils.target_env_call(['pacman', '-Sy', '--noconfirm', 'firefox']) #updating firefox first!
         libcalamares.utils.target_env_call(['pacman', '-S', '--noconfirm', pkgname]) #Install firefox language pack
 
@@ -130,8 +130,8 @@ def install_libreoffice_language_package():
 
     if update:
         print('[mrpacman] -> Install libreoffice language package :' + pkgname)
-		libcalamares.utils.target_env_call(['pacman-key', '--init']) #Initializing the keyring
-		libcalamares.utils.target_env_call(['pacman-key', '--populate', 'archlinux']) #Verifiying the master key
+        libcalamares.utils.target_env_call(['pacman-key', '--init']) #Initializing the keyring
+        libcalamares.utils.target_env_call(['pacman-key', '--populate', 'archlinux']) #Verifiying the master key
         libcalamares.utils.target_env_call(['pacman', '-Sy', '--noconfirm', 'libreoffice-still']) #updating firefox first!
         libcalamares.utils.target_env_call(['pacman', '-S', '--noconfirm', pkgname]) #Install firefox language pack
 
