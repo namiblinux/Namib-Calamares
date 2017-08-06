@@ -106,8 +106,34 @@ def install_firefox_language_package():
 
     if update:
         print('[mrpacman] -> Install firefox language package :' + pkgname)
+		libcalamares.utils.target_env_call(['pacman-key', '--init']) #Initializing the keyring
+		libcalamares.utils.target_env_call(['pacman-key', '--populate', 'archlinux']) #Verifiying the master key
         libcalamares.utils.target_env_call(['pacman', '-Sy', '--noconfirm', 'firefox']) #updating firefox first!
-        libcalamares.utils.target_env_call(['pacman', '-S', '--noconfirm', pkgname])
+        libcalamares.utils.target_env_call(['pacman', '-S', '--noconfirm', pkgname]) #Install firefox language pack
+
+def install_libreoffice_language_package():
+    lang = get_language()
+    command = "pacman -Ss"
+    pkgname = "libreoffice-still-"
+    encoding = "utf-8"
+    update = True
+    output = subprocess.check_output(['sh','-c', command, pkgname + lang, "-q"]).decode(encoding)
+    if pkgname + lang not in output:
+        parts = lang.split("-")
+        output = subprocess.check_output(['sh','-c', command, pkgname + parts[0], "-q"]).decode(encoding)
+        if pkgname + parts[0] in output:
+            pkgname = pkgname + parts[0]
+        else:
+            update = False
+    else:
+        pkgname = pkgname + lang
+
+    if update:
+        print('[mrpacman] -> Install libreoffice language package :' + pkgname)
+		libcalamares.utils.target_env_call(['pacman-key', '--init']) #Initializing the keyring
+		libcalamares.utils.target_env_call(['pacman-key', '--populate', 'archlinux']) #Verifiying the master key
+        libcalamares.utils.target_env_call(['pacman', '-Sy', '--noconfirm', 'libreoffice-still']) #updating firefox first!
+        libcalamares.utils.target_env_call(['pacman', '-S', '--noconfirm', pkgname]) #Install firefox language pack
 
 
 virtualbox = False #global var for virtualbox_check
@@ -176,7 +202,7 @@ def run():
     if backend not in ("pacman"):
         return "Bad backend", "backend=\"{}\"".format(backend)
 
-    pkgman = PackageManager(backend)
+    pkgman = PackageManager(bacinstakend)
     operations = libcalamares.job.configuration.get("operations", [])
 
     for entry in operations:
@@ -186,6 +212,7 @@ def run():
         #print('[mrpacman] -> updating packages..(this may take several minutes)')
         #pkgman.upgrade()
         install_firefox_language_package()
+		install_libreoffice_language_package()
     else:
         print('[mrpacman] -> updating packages skipped (no internet connection found!)')
 
