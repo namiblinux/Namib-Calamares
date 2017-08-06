@@ -212,7 +212,7 @@ def run():
         #print('[mrpacman] -> updating packages..(this may take several minutes)')
         #pkgman.upgrade()
         install_firefox_language_package()
-		install_libreoffice_language_package()
+        install_libreoffice_language_package()
     else:
         print('[mrpacman] -> updating packages skipped (no internet connection found!)')
 
