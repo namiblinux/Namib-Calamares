@@ -111,6 +111,30 @@ def install_firefox_language_package():
         libcalamares.utils.target_env_call(['pacman', '-Sy', '--noconfirm', 'firefox']) #updating firefox first!
         libcalamares.utils.target_env_call(['pacman', '-S', '--noconfirm', pkgname]) #Install firefox language pack
 
+def install_thunderbird_language_package():
+    lang = get_language()
+    command = "pacman -Ss"
+    pkgname = "thunderbird-i18n-"
+    encoding = "utf-8"
+    update = True
+    output = subprocess.check_output(['sh','-c', command, pkgname + lang, "-q"]).decode(encoding)
+    if pkgname + lang not in output:
+        parts = lang.split("-")
+        output = subprocess.check_output(['sh','-c', command, pkgname + parts[0], "-q"]).decode(encoding)
+        if pkgname + parts[0] in output:
+            pkgname = pkgname + parts[0]
+        else:
+            update = False
+    else:
+        pkgname = pkgname + lang
+
+    if update:
+        print('[mrpacman] -> Install thunderbird language package :' + pkgname)
+        libcalamares.utils.target_env_call(['pacman-key', '--init']) #Initializing the keyring
+        libcalamares.utils.target_env_call(['pacman-key', '--populate', 'archlinux']) #Verifiying the master key
+        libcalamares.utils.target_env_call(['pacman', '-Sy', '--noconfirm', 'thunderbird']) #updating firefox first!
+        libcalamares.utils.target_env_call(['pacman', '-S', '--noconfirm', pkgname]) #Install firefox language pack
+
 def install_libreoffice_language_package():
     lang = get_language()
     command = "pacman -Ss"
@@ -213,6 +237,7 @@ def run():
         #pkgman.upgrade()
         install_firefox_language_package()
         install_libreoffice_language_package()
+        install_thunderbird_language_package()
     else:
         print('[mrpacman] -> updating packages skipped (no internet connection found!)')
 
