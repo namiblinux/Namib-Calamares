@@ -231,7 +231,7 @@ def run():
         #pkgman.upgrade()
         libcalamares.utils.target_env_call(['pacman-key', '--init']) #Initializing the keyring
         libcalamares.utils.target_env_call(['pacman-key', '--populate', 'archlinux']) #Verifiying the master key
-        libcalamares.utils.target_env_call(['pacman', '-Sy']) #Update database
+        libcalamares.utils.target_env_call(['pacman', '-Syy']) #Update database
         install_firefox_language_package()
         install_libreoffice_language_package()
         install_thunderbird_language_package()
