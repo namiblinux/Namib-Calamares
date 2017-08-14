@@ -4,8 +4,8 @@ componentName:  namib
 strings:
     productName:         Namib GNU/Linux
     shortProductName:    Namib
-    version:             17.07
-    shortVersion:        17.07
+    version:             17.08
+    shortVersion:        17.08
     versionedName:       Namib GNU/Linux
     shortVersionedName:  Namib GNU/Linux
     bootloaderEntryName: Namib
