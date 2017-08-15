@@ -37,7 +37,7 @@ build() {
               -DCMAKE_BUILD_TYPE=Release \
               -DCMAKE_INSTALL_PREFIX=/usr \
               -DCMAKE_INSTALL_LIBDIR=lib \
-              -DSKIP_MODULES="webview interactiveterminal initramfs dracut packages netinstall license"
+              -DSKIP_MODULES="webview interactiveterminal initramfs dracut netinstall license"
         make
 }
 
