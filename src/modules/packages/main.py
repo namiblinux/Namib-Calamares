@@ -34,7 +34,7 @@ class PackageManager:
     :param backend:
     """
     def __init__(self, backend):
-        self.backend = backend
+        self.backend = pacman
 
     def install(self, pkgs, from_local=False):
         """ Installs packages.
