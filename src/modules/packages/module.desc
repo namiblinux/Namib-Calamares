@@ -1,0 +1,6 @@
+---
+type:       "job"
+name:       "packages"
+interface:  "python"
+script:     "main.py"
+
