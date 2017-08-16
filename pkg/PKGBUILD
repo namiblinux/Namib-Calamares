@@ -1,5 +1,5 @@
 pkgname=calamares
-pkgver=3.1.1
+pkgver=master
 pkgrel=2
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
@@ -15,7 +15,7 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
 
-source+=("https://github.com/calamares/calamares/archive/v3.1.1.zip"
+source+=("https://github.com/calamares/calamares/archive/master.zip"
          git+https://github.com/MeerkatBrowser/Namib-Calamares)
 
 sha256sums=('SKIP'
@@ -37,7 +37,7 @@ build() {
               -DCMAKE_BUILD_TYPE=Release \
               -DCMAKE_INSTALL_PREFIX=/usr \
               -DCMAKE_INSTALL_LIBDIR=lib \
-              -DSKIP_MODULES="webview interactiveterminal initramfs dracut netinstall license"
+              -DSKIP_MODULES="webview interactiveterminal initramfs dracut packages netinstall license"
         make
 }
 
