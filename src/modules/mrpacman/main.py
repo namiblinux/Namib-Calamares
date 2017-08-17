@@ -20,6 +20,7 @@
 #   You should have received a copy of the GNU General Public License
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
+import os
 import libcalamares
 import urllib.request
 import subprocess
@@ -229,9 +230,12 @@ def run():
     if connected("http://github.com"):
         #print('[mrpacman] -> updating packages..(this may take several minutes)')
         #pkgman.upgrade()
-        libcalamares.utils.target_env_call(['pacman-key', '--init']) #Initializing the keyring
-        libcalamares.utils.target_env_call(['pacman-key', '--populate', 'archlinux']) #Verifiying the master key
-        libcalamares.utils.target_env_call(['pacman', '-Syy']) #Update database
+        os.system("sudo pacman-key --init") #Initializing the keyring in the LiveCD
+        os.system("sudo pacman-key --populate archlinux") #Verifiying the master key in the LiveCD
+        os.system("sudo pacman -Syy") #Update database in the LiveCD
+        libcalamares.utils.target_env_call(['pacman-key', '--init']) #Initializing the keyring in the installed OS
+        libcalamares.utils.target_env_call(['pacman-key', '--populate', 'archlinux']) #Verifiying the master key in the installed OS
+        libcalamares.utils.target_env_call(['pacman', '-Syy']) #Update database in the installed OS
         install_firefox_language_package()
         install_libreoffice_language_package()
         install_thunderbird_language_package()
