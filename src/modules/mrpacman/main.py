@@ -107,7 +107,6 @@ def install_firefox_language_package():
 
     if update:
         print('[mrpacman] -> Install firefox language package :' + pkgname)
-        libcalamares.utils.target_env_call(['pacman', '-Sy', '--noconfirm', 'firefox']) #updating firefox first!
         libcalamares.utils.target_env_call(['pacman', '-S', '--noconfirm', pkgname]) #Install firefox language pack
 
 def install_thunderbird_language_package():
@@ -129,7 +128,6 @@ def install_thunderbird_language_package():
 
     if update:
         print('[mrpacman] -> Install thunderbird language package :' + pkgname)
-        libcalamares.utils.target_env_call(['pacman', '-Sy', '--noconfirm', 'thunderbird']) #updating firefox first!
         libcalamares.utils.target_env_call(['pacman', '-S', '--noconfirm', pkgname]) #Install firefox language pack
 
 def install_libreoffice_language_package():
@@ -151,7 +149,6 @@ def install_libreoffice_language_package():
 
     if update:
         print('[mrpacman] -> Install libreoffice language package :' + pkgname)
-        libcalamares.utils.target_env_call(['pacman', '-Sy', '--noconfirm', 'libreoffice-still']) #updating firefox first!
         libcalamares.utils.target_env_call(['pacman', '-S', '--noconfirm', pkgname]) #Install firefox language pack
 
 

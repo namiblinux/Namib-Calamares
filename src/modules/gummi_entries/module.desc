@@ -1,5 +1,0 @@
----
-type:       "job"
-name:       "gummi_entries"
-interface:  "python"
-script:     "main.py"
