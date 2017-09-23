@@ -230,10 +230,12 @@ def run():
         os.system("sudo pacman-key --init") #Initializing the keyring in the LiveCD
         os.system("sudo pacman-key --populate archlinux") #Verifiying the master key in the LiveCD
         os.system("sudo pacman-key --populate namib") #Verifiying the master key in the LiveCD
+        os.system("sudo pacman-key --recv-keys E1EE175A172DE92F") #Receive key in the LiveCD
         os.system("sudo pacman -Syy") #Update database in the LiveCD
         libcalamares.utils.target_env_call(['pacman-key', '--init']) #Initializing the keyring in the installed OS
         libcalamares.utils.target_env_call(['pacman-key', '--populate', 'archlinux']) #Verifiying the master key in the installed OS
         libcalamares.utils.target_env_call(['pacman-key', '--populate', 'namib']) #Verifiying the master key in the installed OS
+        libcalamares.utils.target_env_call(['pacman-key', '--recv-keys', 'E1EE175A172DE92F']) #Receive key in the installed OS
         libcalamares.utils.target_env_call(['pacman', '-Syy']) #Update database in the installed OS
         install_firefox_language_package()
         install_libreoffice_language_package()
