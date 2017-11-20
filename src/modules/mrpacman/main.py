@@ -151,6 +151,90 @@ def install_libreoffice_language_package():
         print('[mrpacman] -> Install libreoffice language package :' + pkgname)
         libcalamares.utils.target_env_call(['pacman', '-S', '--noconfirm', pkgname]) #Install firefox language pack
 
+def install_aspell_language_package():
+    lang = get_language()
+    command = "pacman -Ss"
+    pkgname = "aspell-"
+    encoding = "utf-8"
+    update = True
+    output = subprocess.check_output(['sh','-c', command, pkgname + lang, "-q"]).decode(encoding)
+    if pkgname + lang not in output:
+        parts = lang.split("-")
+        output = subprocess.check_output(['sh','-c', command, pkgname + parts[0], "-q"]).decode(encoding)
+        if pkgname + parts[0] in output:
+            pkgname = pkgname + parts[0]
+        else:
+            update = False
+    else:
+        pkgname = pkgname + lang
+
+    if update:
+        print('[mrpacman] -> Install aspell language package :' + pkgname)
+        libcalamares.utils.target_env_call(['pacman', '-S', '--noconfirm', pkgname]) #Install aspell language pack
+
+def install_gimp_language_package():
+    lang = get_language()
+    command = "pacman -Ss"
+    pkgname = "gimp-help-"
+    encoding = "utf-8"
+    update = True
+    output = subprocess.check_output(['sh','-c', command, pkgname + lang, "-q"]).decode(encoding)
+    if pkgname + lang not in output:
+        parts = lang.split("-")
+        output = subprocess.check_output(['sh','-c', command, pkgname + parts[0], "-q"]).decode(encoding)
+        if pkgname + parts[0] in output:
+            pkgname = pkgname + parts[0]
+        else:
+            update = False
+    else:
+        pkgname = pkgname + lang
+
+    if update:
+        print('[mrpacman] -> Install gimp language package :' + pkgname)
+        libcalamares.utils.target_env_call(['pacman', '-S', '--noconfirm', pkgname]) #Install gimp language pack
+
+def install_hunspell_language_package():
+    lang = get_language()
+    command = "pacman -Ss"
+    pkgname = "hunspell-"
+    encoding = "utf-8"
+    update = True
+    output = subprocess.check_output(['sh','-c', command, pkgname + lang, "-q"]).decode(encoding)
+    if pkgname + lang not in output:
+        parts = lang.split("-")
+        output = subprocess.check_output(['sh','-c', command, pkgname + parts[0], "-q"]).decode(encoding)
+        if pkgname + parts[0] in output:
+            pkgname = pkgname + parts[0]
+        else:
+            update = False
+    else:
+        pkgname = pkgname + lang
+
+    if update:
+        print('[mrpacman] -> Install hunspell language package :' + pkgname)
+        libcalamares.utils.target_env_call(['pacman', '-S', '--noconfirm', pkgname]) #Install hunspell language pack
+
+def install_hyphen_language_package():
+    lang = get_language()
+    command = "pacman -Ss"
+    pkgname = "hyphen-"
+    encoding = "utf-8"
+    update = True
+    output = subprocess.check_output(['sh','-c', command, pkgname + lang, "-q"]).decode(encoding)
+    if pkgname + lang not in output:
+        parts = lang.split("-")
+        output = subprocess.check_output(['sh','-c', command, pkgname + parts[0], "-q"]).decode(encoding)
+        if pkgname + parts[0] in output:
+            pkgname = pkgname + parts[0]
+        else:
+            update = False
+    else:
+        pkgname = pkgname + lang
+
+    if update:
+        print('[mrpacman] -> Install hyphen language package :' + pkgname)
+        libcalamares.utils.target_env_call(['pacman', '-S', '--noconfirm', pkgname]) #Install hyphen language pack
+
 
 virtualbox = False #global var for virtualbox_check
 
@@ -240,6 +324,10 @@ def run():
         install_firefox_language_package()
         install_libreoffice_language_package()
         install_thunderbird_language_package()
+        install_aspell_language_package()
+        install_gimp_language_package()
+        install_hunspell_language_package()
+        install_hyphen_language_package()
     else:
         print('[mrpacman] -> updating packages skipped (no internet connection found!)')
 
