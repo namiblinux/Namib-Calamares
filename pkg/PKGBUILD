@@ -1,5 +1,5 @@
 pkgname=calamares
-pkgver=3.1.8
+pkgver=3.1.12
 pkgrel=2
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
@@ -15,7 +15,7 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
 
-source+=("https://github.com/calamares/calamares/archive/v3.1.8.zip"
+source+=("https://github.com/calamares/calamares/archive/v3.1.12.zip"
          git+https://github.com/MeerkatBrowser/Namib-Calamares)
 
 sha256sums=('SKIP'
