@@ -251,6 +251,7 @@ def virtualbox_check():
 
     return virtualbox
 
+
 def packagelist_filter(pkgs, pkg_remove_filter, first_index, last_index):
     new_package_list = []
     for pkg in pkgs:
