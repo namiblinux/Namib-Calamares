@@ -74,8 +74,5 @@ package() {
 	install -Dm755 "../data/calamares_polkit" "$pkgdir/usr/bin/calamares_polkit"
     install -Dm644 "../data/49-nopasswd-calamares.rules" "$pkgdir/etc/polkit-1/rules.d/49-nopasswd-calamares.rules"
     chmod 750 "$pkgdir"/etc/polkit-1/rules.d
-    rm -r "$pkgdir/usr/lib/calamares/modules/dummyprocess/"
-    rm -r "$pkgdir/usr/lib/calamares/modules/dummypython/"
-    rm "$pkgdir/usr/share/calamares/modules/dummypython.conf"
 }
 
