@@ -22,7 +22,8 @@ depends=('kconfig'
          'qt5-svg'
          'qt5-webkit'
          'polkit-qt5' 
-         'gtk-update-icon-cache')
+         'gtk-update-icon-cache'
+         'libpwquality')
 makedepends=('extra-cmake-modules'
              'qt5-tools'
              'qt5-translations'
