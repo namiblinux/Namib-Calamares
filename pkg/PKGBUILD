@@ -6,9 +6,28 @@ arch=('i686' 'x86_64')
 license=(GPL)
 url="https://github.com/calamares"
 license=('LGPL')
-depends=('kconfig' 'kcoreaddons' 'ki18n' 'solid' 'yaml-cpp' 'kpmcore' 'mkinitcpio-openswap' 'dmidecode'
-         'boost-libs' 'hwinfo' 'qt5-svg' 'polkit-qt5' 'gptfdisk' 'gtk-update-icon-cache' 'rsync' 'squashfs-tools')
-makedepends=('extra-cmake-modules' 'qt5-tools' 'git' 'boost')
+depends=('kconfig'
+         'kcoreaddons'
+         'kiconthemes'
+         'ki18n'
+         'kio'
+         'solid'
+         'squashfs-tools'
+         'yaml-cpp'
+         'kpmcore>=3.3.0'
+         'mkinitcpio-openswap'
+         'boost-libs'
+         'ckbcomp'
+         'hwinfo'
+         'qt5-svg'
+         'qt5-webkit'
+         'polkit-qt5' 
+         'gtk-update-icon-cache')
+makedepends=('extra-cmake-modules'
+             'qt5-tools'
+             'qt5-translations'
+             'git'
+             'boost')
 backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/displaymanager.conf'
         'usr/share/calamares/modules/initcpio.conf'
@@ -34,12 +53,18 @@ build() {
     mkdir -p build
     cd build
         cmake .. \
-              -DCMAKE_BUILD_TYPE=Release \
-              -DCMAKE_INSTALL_PREFIX=/usr \
-             -DCMAKE_INSTALL_LIBDIR=lib \
-              -DSKIP_MODULES="webview interactiveterminal initramfs dracut packages netinstall license"
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DCMAKE_INSTALL_LIBDIR=lib \
+        -DWITH_CRASHREPORTER:BOOL=OFF \
+        -DWITH_PYTHONQT:BOOL=OFF \
+        -DSKIP_MODULES="webview interactiveterminal initramfs \
+                        initramfscfg dracut dracutlukscfg \
+                        dummyprocess dummypython dummycpp \
+                        dummypythonqt plasmalnf"
         make
 }
+
 
 package() {
     cd ${srcdir}/calamares-${pkgver}/build
