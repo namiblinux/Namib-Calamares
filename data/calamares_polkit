@@ -1,6 +1,6 @@
 #!/bin/bash
 if [ $(which pkexec) ]; then
-	pkexec --disable-internal-agent "/usr/bin/calamares" "$@"
+	pkexec --disable-internal-agent env QT_QPA_PLATFORMTHEME=qt5ct QT_AUTO_SCREEN_SCALE_FACTOR=0 DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY "/usr/bin/calamares" "$@"
 else
 	/usr/bin/calamares "$@"
 fi
