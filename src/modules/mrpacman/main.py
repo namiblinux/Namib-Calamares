@@ -133,7 +133,7 @@ def install_thunderbird_language_package():
 def install_libreoffice_language_package():
     lang = get_language()
     command = "pacman -Ss"
-    pkgname = "libreoffice-still-"
+    pkgname = "libreoffice-fresh-"
     encoding = "utf-8"
     update = True
     output = subprocess.check_output(['sh','-c', command, pkgname + lang, "-q"]).decode(encoding)
