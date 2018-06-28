@@ -4,8 +4,8 @@ componentName:  namib
 strings:
     productName:         Namib GNU/Linux
     shortProductName:    Namib
-    version:             18.02
-    shortVersion:        18.02
+    version:             18.06
+    shortVersion:        18.06
     versionedName:       Namib GNU/Linux
     shortVersionedName:  Namib GNU/Linux
     bootloaderEntryName: Namib
@@ -19,6 +19,6 @@ images:
 slideshow:               "show.qml"
 
 style:
-   sidebarBackground:    "#353945"
+   sidebarBackground:    "#2d2d2d"
    sidebarText:          "#FFFFFF"
-   sidebarTextSelect:    "#353945"
+   sidebarTextSelect:    "#2d2d2d"
