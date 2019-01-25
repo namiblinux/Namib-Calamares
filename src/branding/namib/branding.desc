@@ -4,8 +4,8 @@ componentName:  namib
 strings:
     productName:         Namib GNU/Linux
     shortProductName:    Namib
-    version:             18.08
-    shortVersion:        18.08
+    version:             19.01
+    shortVersion:        19.01
     versionedName:       Namib GNU/Linux
     shortVersionedName:  Namib GNU/Linux
     bootloaderEntryName: Namib
