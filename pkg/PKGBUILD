@@ -61,9 +61,9 @@ build() {
         -DWITH_CRASHREPORTER:BOOL=OFF \
         -DWITH_PYTHONQT:BOOL=OFF \
         -DSKIP_MODULES="webview interactiveterminal initramfs \
-                        initramfscfg dracut dracutlukscfg \
-                        dummyprocess dummypython dummycpp \
-                        dummypythonqt plasmalnf"
+                              initramfscfg dracut dracutlukscfg \
+                              dummyprocess dummypython dummycpp \
+                              dummypythonqt services-openrc services-systemd"
         make
 }
 
