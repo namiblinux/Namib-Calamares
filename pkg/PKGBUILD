@@ -35,7 +35,7 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
 
-source+=("https://github.com/calamares/calamares/archive/v3.2.2.zip"
+source+=("https://github.com/calamares/calamares/archive/v3.2.11.zip"
          git+https://github.com/MeerkatBrowser/Namib-Calamares)
 
 sha256sums=('SKIP'
