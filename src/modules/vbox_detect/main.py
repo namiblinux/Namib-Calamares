@@ -10,7 +10,7 @@ import os
 
 
 def run():
-    """ Calls routine to create kernel initramfs image.
+    """ Calls routine to detect Virtualbox.
 
     :return:
     """
