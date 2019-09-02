@@ -1,5 +1,5 @@
-pkgname=calamares-git
-pkgver=3.2.11
+pkgname=calamares
+pkgver=3.2.13
 pkgrel=1
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
@@ -35,25 +35,22 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
 
-source+=("https://github.com/calamares/calamares/archive/master.zip"
+source+=("https://github.com/calamares/calamares/archive/v3.2.13.zip"
          git+https://github.com/MeerkatBrowser/Namib-Calamares)
 
 sha256sums=('SKIP'
             'SKIP')
 
 prepare() {
-    #cp -a ${srcdir}/Namib-Calamares/* ${srcdir}/calamares-${pkgver}
-    cp -a ${srcdir}/Namib-Calamares/* ${srcdir}/calamares-master
+    cp -a ${srcdir}/Namib-Calamares/* ${srcdir}/calamares-${pkgver}
     rm -rf ${srcdir}/Namib-Calamares
-    #cd ${srcdir}/calamares-${pkgver}
-    cd ${srcdir}/calamares-master
+    cd ${srcdir}/calamares-${pkgver}
     sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' CMakeLists.txt
 }
 
 
 build() {
-    #cd ${srcdir}/calamares-${pkgver}
-    cd ${srcdir}/calamares-master
+    cd ${srcdir}/calamares-${pkgver}
 
     mkdir -p build
     cd build
@@ -72,8 +69,7 @@ build() {
 
 
 package() {
-    #cd ${srcdir}/calamares-${pkgver}/build
-    cd ${srcdir}/calamares-master/build
+    cd ${srcdir}/calamares-${pkgver}/build
     make DESTDIR="$pkgdir" install
     install -Dm644 "../calamares.desktop" "$pkgdir/usr/share/applications/calamares.desktop"
 	install -Dm755 "../data/calamares_polkit" "$pkgdir/usr/bin/calamares_polkit"
